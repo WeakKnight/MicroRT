@@ -1,0 +1,7 @@
+.DS_Store
+Build/
+Bin/
+!ThirdParty/NVNeuralSDK/Bin
+.vscode/
+.idea/
+Source/Core/Private/ECS.generated.inl
