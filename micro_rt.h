@@ -64,22 +64,24 @@ typedef struct
 	float geometry_normal_z;
 } micro_rt_hit;
 
-void micro_rt_init(uint32_t backend_type);
-
+/*
+BLAS API
+*/
 micro_rt_blas* micro_rt_blas_create(micro_rt_geometry_desc* geometry_desc_list, uint32_t geometry_num);
-
-micro_rt_tlas* micro_rt_tlas_create(micro_rt_instance_desc* instance_desc_list, uint32_t instance_num);
-
 void micro_rt_blas_destroy(micro_rt_blas* blas);
 
+/*
+TLAS API
+*/
+micro_rt_tlas* micro_rt_tlas_create(micro_rt_instance_desc* instance_desc_list, uint32_t instance_num);
 void micro_rt_tlas_destroy(micro_rt_tlas* tlas);
-
 void micro_rt_tlas_update_instance_transformation(micro_rt_tlas* as, uint32_t instance_index, float* transformation);
-
 void micro_rt_tlas_update_instance_mask(micro_rt_tlas* as, uint32_t instance_index, uint8_t mask);
-
-void micro_rt_dispatch(micro_rt_tlas* as, micro_rt_ray* ray_list, micro_rt_hit* hit_list, uint32_t ray_num, uint8_t ray_mask, uint32_t hit_type);
-
 void micro_rt_tlas_commit(micro_rt_tlas* as);
 
+/*
+Life Cycle
+*/
+void micro_rt_init(uint32_t backend_type);
+void micro_rt_dispatch(micro_rt_tlas* as, micro_rt_ray* ray_list, micro_rt_hit* hit_list, uint32_t ray_num, uint8_t ray_mask, uint32_t hit_type);
 void micro_rt_release();
